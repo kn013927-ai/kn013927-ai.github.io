@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free BMI Calculator - Check Your Body Mass Index Online</title>
+<meta name="description" content="Free BMI Calculator. Check your Body Mass Index with height and weight. Know if you are underweight, normal, overweight or obese.">
+<style>
+body{font-family:Arial,sans-serif;background:#f4f6f8;margin:0;padding:20px;text-align:center}
+.box{max-width:500px;background:#fff;margin:auto;padding:25px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+h1{font-size:24px}
+p{color:#555;font-size:15px;line-height:1.6}
+label{display:block;text-align:left;margin-top:12px;font-weight:bold}
+input{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box}
+button{width:100%;padding:13px;background:#163b65;color:#fff;border:none;border-radius:8px;font-size:17px;cursor:pointer;margin-top:12px}
+button:hover{background:#0f2a4a}
+#result{font-size:22px;font-weight:bold;margin-top:18px}
+#category{font-size:17px;margin-top:6px}
+table{width:100%;margin-top:18px;border-collapse:collapse;font-size:14px}
+td{border:1px solid #ddd;padding:8px}
+a{color:#007bff;text-decoration:none}
+.back{display:block;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>BMI Calculator</h1>
+<p>Apna wazan aur qad likho, tumhara BMI pata chal jayega ke tum normal ho, kamzor ho ya overweight ho.</p>
+<label>Your Weight (kg)</label>
+<input type="number" id="weight" placeholder="Example: 65">
+<label>Your Height (cm)</label>
+<input type="number" id="height" placeholder="Example: 170">
+<button onclick="calcBMI()">Calculate BMI</button>
+<div id="result"></div>
+<div id="category"></div>
+<table>
+<tr><td>Below 18.5</td><td>Underweight</td></tr>
+<tr><td>18.5 - 24.9</td><td>Normal</td></tr>
+<tr><td>25 - 29.9</td><td>Overweight</td></tr>
+<tr><td>30+</td><td>Obese</td></tr>
+</table>
+<p><b>Kaise Use Karein?</b><br>1. Wazan kg me likho<br>2. Qad cm me likho<br>3. Calculate dabao</p>
+<a class="back" href="index.html">← Back to All Tools</a>
+</div>
+<script>
+function calcBMI(){
+let w=parseFloat(document.getElementById("weight").value);
+let h=parseFloat(document.getElementById("height").value);
+if(!w||!h){alert("Pehle weight aur height likho");return;}
+let m=h/100;
+let bmi=w/(m*m);
+document.getElementById("result").innerHTML="Your BMI: "+bmi.toFixed(1);
+let cat="";
+if(bmi<18.5) cat="You are Underweight";
+else if(bmi<25) cat="You are Normal - Mubarak ho!";
+else if(bmi<30) cat="You are Overweight";
+else cat="You are Obese - Doctor se mashwara karo";
+document.getElementById("category").innerHTML=cat;
+}
+</script>
+</body>
+</html>
