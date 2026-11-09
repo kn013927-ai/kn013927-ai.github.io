@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free QR Code Generator - Create QR Code Online</title>
+<meta name="description" content="Free QR Code Generator. Create QR code for any link, text, WhatsApp, YouTube in seconds. Download QR code for free.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f6f8;margin:0;padding:20px;text-align:center}
+.box{max-width:500px;background:#fff;margin:auto;padding:25px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+h1{font-size:24px}
+p{color:#555;font-size:15px;line-height:1.6}
+input,select{width:100%;padding:12px;margin:10px 0;border:1px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box}
+button{width:100%;padding:13px;background:#007bff;color:#fff;border:none;border-radius:8px;font-size:17px;cursor:pointer;margin-top:5px}
+button:hover{background:#0056b3}
+#qrcode{display:flex;justify-content:center;margin:20px 0}
+a{color:#007bff;text-decoration:none}
+.back{display:block;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>QR Code Generator</h1>
+<p>Apna link ya text likho, QR Code ban jayega. Kisi bhi link, WhatsApp number, YouTube video ke liye use karo.</p>
+<input type="text" id="text" placeholder="Yahan link ya text likho... Example: https://youtube.com">
+<select id="size">
+<option value="200">Small - 200x200</option>
+<option value="300" selected>Medium - 300x300</option>
+<option value="400">Large - 400x400</option>
+</select>
+<button onclick="makeQR()">Generate QR Code</button>
+<div id="qrcode"></div>
+<button onclick="downloadQR()" id="dlBtn" style="display:none;background:#28a745">Download QR Code</button>
+<p><b>Kaise Use Karein?</b><br>1. Upar apna link likho<br>2. Generate dabao<br>3. QR Code ko download kar lo</p>
+<a class="back" href="index.html">← Back to All Tools</a>
+</div>
+<script>
+let qr;
+function makeQR(){
+let t=document.getElementById("text").value;
+if(!t){alert("Pehle link ya text likho");return;}
+document.getElementById("qrcode").innerHTML="";
+let s=document.getElementById("size").value;
+qr=new QRCode(document.getElementById("qrcode"),{text:t,width:parseInt(s),height:parseInt(s),correctLevel:QRCode.CorrectLevel.H});
+document.getElementById("dlBtn").style.display="block";
+}
+function downloadQR(){
+let img=document.querySelector("#qrcode img");
+if(!img){alert("Pehle QR Code banao");return;}
+let a=document.createElement("a");
+a.href=img.src;
+a.download="qr-code.png";
+a.click();
+}
+</script>
+</body>
+</html>
